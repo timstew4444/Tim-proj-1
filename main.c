@@ -56,10 +56,10 @@ printf("Enter a message to encrypt: "); //user adds message
 
     for(c = 0;(c < 100 && str[c] != '\0'); c++) { 
         if(str[c] >= 97 && str[c] <= 122) { // if the string is between a and z then do as follows
-			str[c] = (str[c] + key);
+			str[c] = (str[c] - 32 + key);
 			
-			if(str[c] > 122){               // if the key is high then z will need to be shifted back to the beginning hence formula will allow this
-				str[c] = str[c] - 122 + 97 - 1; // the numbers are a representation of the ascii chrter it represents
+			if(str[c] > 90){               // if the key is high then z will need to be shifted back to the beginning hence formula will allow this
+				str[c] = str[c] - 90 + 65 - 1; // the numbers are a representation of the ascii chrter it represents
 			}
 		}
 		else if(str[c] >= 65 && str[c] <= 90) {
