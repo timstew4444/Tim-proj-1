@@ -1,5 +1,8 @@
 #include <stdio.h>
 
+void encryption(char messageletter[]); // function prototype put task switch case 
+                                        //statement inside main and than each task as a function definition
+
     char messageletter[1024]; //used for each encrypted/decrypted letter
     float x; // where x will be the encrypted function in formula in loop
     int task;
