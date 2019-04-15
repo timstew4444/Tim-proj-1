@@ -1,7 +1,7 @@
 #include <stdio.h>
 
-void encryption(char messageletter[]); // function prototype put task switch case 
-                                        //statement inside main and than each task as a function definition
+void rotencrypt(char str[]); // function prototype put task switch case 
+void rotdecrypt(char str[]);                                        //statement inside main and than each task as a function definition
 
     char messageletter[1024]; //used for each encrypted/decrypted letter
     float x; // where x will be the encrypted function in formula in loop
@@ -12,13 +12,14 @@ void encryption(char messageletter[]); // function prototype put task switch cas
 
 int main() {
 
-    /* printf("Select task 1, 2, 3, 4, 5, 6:");
+    printf("Select task 1, 2, 3, 4, 5, 6:");
 
     scanf("%d", &task);
 
     switch(task){
 
         case 1: task == 1;
+        void rotencrypt;
 
 break;
 
@@ -52,7 +53,12 @@ default: printf("Task does not exist");
 
 //This is needed for end result for user to pick the task
 
-*/
+
+
+}
+
+void rotencrypt(char str[]) {
+    
 printf("Enter a message to encrypt: "); //user adds message
 
     scanf("%[^\n]s", str); //helps get rid of whitespace
@@ -74,6 +80,31 @@ printf("Enter a message to encrypt: "); //user adds message
 		}
     }
     printf("Encrypted message: %s\n", str); // scan the code and implement key/ equation to encrypt code by printing back to user
+}
+
+void rotdecrypt(char str[]) {
+    printf("Enter a message to decrypt: "); 
+
+    scanf("%[^\n]s", str); 
+
+    for(c = 0;(c < 100 && str[c] != '\0'); c++) { 
+        if(str[c] >= 97 && str[c] <= 122) { 
+			str[c] = (str[c] - 32 - key);
+			
+			if(str[c] < 65){              
+				str[c] = str[c] + 90 - 65 + 1; 
+			}
+		}
+		else if(str[c] >= 65 && str[c] <= 90) {
+			str[c] = str[c] - key;
+			
+			if(str[c] < 65){
+				str[c] = str[c] + 90 - 65 + 1;
+			}       
+		}
+    }
+    printf("Decrypted message: %s\n", str);
+    
 }
 
 
