@@ -7,19 +7,19 @@
     char str[1024]; //used for each encrypted/decrypted letter
 
 int main() {
-    printf("Enter a message: "); //user adds message that will be either encrypted or decrypted
+    printf("Enter a message: \n"); //user adds message that will be either encrypted or decrypted
     scanf("%[^\n]s", str); // it is than read for str and this will allow for whitespace
     printf("Please select an option: \n"); //menu type bar for user to select specific task
     printf("1) RE\n");
     printf("2) RD\n");
     printf("3) SE\n");
     printf("4) SD\n\n");
-    printf("Selection: ");
+    printf("Selection: \n");
     scanf("%d", &option); // the option chosen which will then go into the switch statement
 
     switch(option){
         case 1: 
-            printf("Choose key (0-26):"); // the key that the letters are rotated by
+            printf("Choose key (0-26): \n"); // the key that the letters are rotated by
             scanf("%d", &key);
             for(c = 0;(c < 100 && str[c] != '\0'); c++) { 
                 if(str[c] >= 97 && str[c] <= 122) { // the numbers represent the equivalent letter in ASCII table ie a = 97 ... z = 122
@@ -40,7 +40,7 @@ int main() {
             printf("Encrypted message: %s\n", str); // prints the encryption back to user
             break; // if this case is implemented than code ends
         case 2:
-            printf("Choose key (0-26):"); // decryption has same layout but minuses key rather than adds it
+            printf("Choose key (0-26): \n"); // decryption has same layout but minuses key rather than adds it
             scanf("%d", &key);
             for(c = 0;(c < 100 && str[c] != '\0'); c++) { 
                 if(str[c] >= 97 && str[c] <= 122) { 
