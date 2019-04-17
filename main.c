@@ -1,5 +1,9 @@
 #include <stdio.h>
 
+    void rotationencryption(char str[]); //function definition
+    void rotationdecryption(char str[]);
+    void substitutionencryption(char str[]);
+    void substitutiondecryption(char str[]);
     
     int option; //option is the choice between rotation or substitution and encryption or decryption
     int c = 0; // counter used in for loop
@@ -19,6 +23,22 @@ int main() {
 
     switch(option){
         case 1: 
+            rotationencryption(str); //takes it to the function definition
+            break; //breaks once/ if executed
+        case 2:
+            rotationdecryption(str);
+            break;
+        case 3: 
+            substitutionencryption(str);
+            break;
+        case 4: 
+            substitutiondecryption(str);
+            break;
+        default: printf("Option does not exist");
+    }
+}
+
+void rotationencryption(char str[]) { //function definition
             printf("Choose key (0-26): \n"); // the key that the letters are rotated by
             scanf("%d", &key);
             for(c = 0;(c < 100 && str[c] != '\0'); c++) { 
@@ -38,9 +58,11 @@ int main() {
 		        }
             }
             printf("Encrypted message: %s\n", str); // prints the encryption back to user
-            break; // if this case is implemented than code ends
-        case 2:
-            printf("Choose key (0-26): \n"); // decryption has same layout but minuses key rather than adds it
+            
+}
+
+void rotationdecryption(char str[]) {
+        printf("Choose key (0-26): \n"); // decryption has same layout but minuses key rather than adds it
             scanf("%d", &key);
             for(c = 0;(c < 100 && str[c] != '\0'); c++) { 
                 if(str[c] >= 97 && str[c] <= 122) { 
@@ -59,8 +81,9 @@ int main() {
 		        }
             }
             printf("Decrypted message: %s\n", str);
-            break;
-        case 3: 
+}
+
+void substitutionencryption(char str[]) {
             for(c = 0;(c < 100 && str[c] != '\0'); c++) { // substitution cipher works similairly to rotation
                 if(str[c] >= 97 && str[c] <= 122) { // takes lower case and makes them upper case
                     str[c] = str[c] - 32;
@@ -121,9 +144,10 @@ int main() {
                 }       
             }
             printf("Encrypted substitutuion: %s\n", str);
-            break;
-        case 4: 
-            for(c = 0;(c < 100 && str[c] != '\0'); c++) {
+}
+
+void substitutiondecryption(char str[]) {
+    for(c = 0;(c < 100 && str[c] != '\0'); c++) {
                 if(str[c] >= 97 && str[c] <= 122) {
                     str[c] = str[c] - 32;
                 }
@@ -183,10 +207,10 @@ int main() {
                 }       
             }
             printf("Decrypted substitutuion: %s\n", str);
-            break;
-        default: printf("Option does not exist");
-    }
+    
 }
+
+           
   /*  Your task is to write a C program which performs the following broad tasks:
         1. Encryption of a message with a rotation cipher given the message text and rotation amount
         2. Decryption of a message encrypted with a rotation cipher given cipher text and rotation amount
