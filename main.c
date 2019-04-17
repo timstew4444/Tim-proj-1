@@ -1,110 +1,191 @@
 #include <stdio.h>
 
-void rotencrypt(char str[]); // function prototype put task switch case 
-void rotdecrypt(char str[]);                                        //statement inside main and than each task as a function definition
-
-    char messageletter[1024]; //used for each encrypted/decrypted letter
-    float x; // where x will be the encrypted function in formula in loop
-    int task;
-    int c = 0;
-    int key = 3; // do we know key or have to find it
-    char str[100];
+    
+    int option; //option is the choice between rotation or substitution and encryption or decryption
+    int c = 0; // counter used in for loop
+    int key; // used for determining the value at which cipher is rotated
+    char str[1024]; //used for each encrypted/decrypted letter
 
 int main() {
+    printf("Enter a message: "); //user adds message that will be either encrypted or decrypted
+    scanf("%[^\n]s", str); // it is than read for str and this will allow for whitespace
+    printf("Please select an option: \n"); //menu type bar for user to select specific task
+    printf("1) RE\n");
+    printf("2) RD\n");
+    printf("3) SE\n");
+    printf("4) SD\n\n");
+    printf("Selection: ");
+    scanf("%d", &option); // the option chosen which will then go into the switch statement
 
-    printf("Select task 1, 2, 3, 4, 5, 6:");
-
-    scanf("%d", &task);
-
-    switch(task){
-
-        case 1: task == 1;
-        void rotencrypt;
-
-break;
-
-        case 2: task == 2;  
-
-
-break;
-
-        case 3: task == 3;
-
-
-break;
-
-        case 4: task == 3;
-
-
-break;
-
-        case 5: task == 3;
-
-
-
-break;
-
-        case 6: task == 3;
-
-
-break;
-
-default: printf("Task does not exist");
-
-//This is needed for end result for user to pick the task
-
-
-
-}
-
-void rotencrypt(char str[]) {
-    
-printf("Enter a message to encrypt: "); //user adds message
-
-    scanf("%[^\n]s", str); //helps get rid of whitespace
-
-    for(c = 0;(c < 100 && str[c] != '\0'); c++) { 
-        if(str[c] >= 97 && str[c] <= 122) { // if the string is between a and z then do as follows
-			str[c] = (str[c] - 32 + key);
+    switch(option){
+        case 1: 
+            printf("Choose key (0-26):"); // the key that the letters are rotated by
+            scanf("%d", &key);
+            for(c = 0;(c < 100 && str[c] != '\0'); c++) { 
+                if(str[c] >= 97 && str[c] <= 122) { // the numbers represent the equivalent letter in ASCII table ie a = 97 ... z = 122
+			        str[c] = (str[c] - 32 + key); // this line assigns the lower case to its equivalent upper case letter
 			
-			if(str[c] > 90){               // if the key is high then z will need to be shifted back to the beginning hence formula will allow this
-				str[c] = str[c] - 90 + 65 - 1; // the numbers are a representation of the ascii chrter it represents
-			}
-		}
-		else if(str[c] >= 65 && str[c] <= 90) {
-			str[c] = str[c] + key;
+			        if(str[c] > 90) {               // if above is higher than Z(90) then it will need to shift back to the beggining ie get to A(65)
+				        str[c] = str[c] - 91 + 65; // ie if key is 1 than Z becomes 91 so make it 0 than add 65 to become A
+			        }
+		        }
+		        else if(str[c] >= 65 && str[c] <= 90) { // same as above by does it for capital letters
+			        str[c] = str[c] + key; //the string than uses letter and adds key to encrypt certain amount
 			
-			if(str[c] > 90){
-				str[c] = str[c] - 90 + 65 - 1;
-			}       //str[c] = (str[c] + key); //the string than uses letter and adds key(3) to encrypt
-		}
+			        if(str[c] > 90) {
+				        str[c] = str[c] - 91 + 65;
+			        }       
+		        }
+            }
+            printf("Encrypted message: %s\n", str); // prints the encryption back to user
+            break; // if this case is implemented than code ends
+        case 2:
+            printf("Choose key (0-26):"); // decryption has same layout but minuses key rather than adds it
+            scanf("%d", &key);
+            for(c = 0;(c < 100 && str[c] != '\0'); c++) { 
+                if(str[c] >= 97 && str[c] <= 122) { 
+			        str[c] = (str[c] - 32 - key);
+			
+			        if(str[c] < 65){  //as it goes opposite way than if its A needs to be shifted back to Z              
+				        str[c] = str[c] + 91 - 65 ; // gets the string and if < 65 takes it to Z
+			        }
+		        }
+		        else if(str[c] >= 65 && str[c] <= 90) {
+			        str[c] = str[c] - key;
+			
+			        if(str[c] < 65){
+				        str[c] = str[c] + 91 - 65;
+			        }       
+		        }
+            }
+            printf("Decrypted message: %s\n", str);
+            break;
+        case 3: 
+            for(c = 0;(c < 100 && str[c] != '\0'); c++) {
+                if(str[c] >= 97 && str[c] <= 122) {
+                    str[c] = str[c] - 32;
+                }
+                switch(str[c])  {
+                    case 'A': str[c] = 'Q';
+                    break;
+                    case 'B': str[c] = 'W';
+                    break;
+                    case 'C': str[c] = 'E';
+                    break;
+                    case 'D': str[c] = 'R';
+                    break;
+                    case 'E': str[c] = 'T';
+                    break;
+                    case 'F': str[c] = 'Y';
+                    break;
+                    case 'G': str[c] = 'U';
+                    break;
+                    case 'H': str[c] = 'I';
+                    break;
+                    case 'I': str[c] = 'O';
+                    break;
+                    case 'J': str[c] = 'P';
+                    break;
+                    case 'K': str[c] = 'A';
+                    break;
+                    case 'L': str[c] = 'S';
+                    break;
+                    case 'M': str[c] = 'D';
+                    break;
+                    case 'N': str[c] = 'F';
+                    break;
+                    case 'O': str[c] = 'G';
+                    break;
+                    case 'P': str[c] = 'H';
+                    break;
+                    case 'Q': str[c] = 'J';
+                    break;
+                    case 'R': str[c] = 'K';
+                    break;
+                    case 'S': str[c] = 'L';
+                    break;
+                    case 'T': str[c] = 'Z';
+                    break;
+                    case 'U': str[c] = 'X';
+                    break;
+                    case 'V': str[c] = 'C';
+                    break;
+                    case 'W': str[c] = 'V';
+                    break;
+                    case 'X': str[c] = 'B';
+                    break;
+                    case 'Y': str[c] = 'N';
+                    break;
+                    case 'Z': str[c] = 'M';
+                    break;
+                }       
+            }
+            printf("Encrypted substitutuion: %s\n", str);
+            break;
+        case 4: 
+            for(c = 0;(c < 100 && str[c] != '\0'); c++) {
+                if(str[c] >= 97 && str[c] <= 122) {
+                    str[c] = str[c] - 32;
+                }
+                switch(str[c])  {
+                    case 'Q': str[c] = 'A';
+                    break;
+                    case 'W': str[c] = 'B';
+                    break;
+                    case 'E': str[c] = 'C';
+                    break;
+                    case 'R': str[c] = 'D';
+                    break;
+                    case 'T': str[c] = 'E';
+                    break;
+                    case 'Y': str[c] = 'F';
+                    break;
+                    case 'U': str[c] = 'G';
+                    break;
+                    case 'I': str[c] = 'H';
+                    break;
+                    case 'O': str[c] = 'I';
+                    break;
+                    case 'P': str[c] = 'J';
+                    break;
+                    case 'A': str[c] = 'K';
+                    break;
+                    case 'S': str[c] = 'L';
+                    break;
+                    case 'D': str[c] = 'M';
+                    break;
+                    case 'F': str[c] = 'N';
+                    break;
+                    case 'G': str[c] = 'O';
+                    break;
+                    case 'H': str[c] = 'P';
+                    break;
+                    case 'J': str[c] = 'Q';
+                    break;
+                    case 'K': str[c] = 'R';
+                    break;
+                    case 'L': str[c] = 'S';
+                    break;
+                    case 'Z': str[c] = 'T';
+                    break;
+                    case 'X': str[c] = 'U';
+                    break;
+                    case 'C': str[c] = 'V';
+                    break;
+                    case 'V': str[c] = 'W';
+                    break;
+                    case 'B': str[c] = 'X';
+                    break;
+                    case 'N': str[c] = 'Y';
+                    break;
+                    case 'M': str[c] = 'Z';
+                    break;
+                }       
+            }
+            printf("Decrypted substitutuion: %s\n", str);
+            break;
+        default: printf("Option does not exist");
     }
-    printf("Encrypted message: %s\n", str); // scan the code and implement key/ equation to encrypt code by printing back to user
-}
-
-void rotdecrypt(char str[]) {
-    printf("Enter a message to decrypt: "); 
-
-    scanf("%[^\n]s", str); 
-
-    for(c = 0;(c < 100 && str[c] != '\0'); c++) { 
-        if(str[c] >= 97 && str[c] <= 122) { 
-			str[c] = (str[c] - 32 - key);
-			
-			if(str[c] < 65){              
-				str[c] = str[c] + 90 - 65 + 1; 
-			}
-		}
-		else if(str[c] >= 65 && str[c] <= 90) {
-			str[c] = str[c] - key;
-			
-			if(str[c] < 65){
-				str[c] = str[c] + 90 - 65 + 1;
-			}       
-		}
-    }
-    printf("Decrypted message: %s\n", str);
-    
 }
 
 
