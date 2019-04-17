@@ -4,16 +4,16 @@
     int option; //option is the choice between rotation or substitution and encryption or decryption
     int c = 0; // counter used in for loop
     int key; // used for determining the value at which cipher is rotated
-    char str[1024]; //used for each encrypted/decrypted letter
+    char str[1000]; //used for each encrypted/decrypted letter
 
 int main() {
     printf("Enter a message: \n"); //user adds message that will be either encrypted or decrypted
     scanf("%[^\n]s", str); // it is than read for str and this will allow for whitespace
     printf("Please select an option: \n"); //menu type bar for user to select specific task
-    printf("1) RE\n");
-    printf("2) RD\n");
-    printf("3) SE\n");
-    printf("4) SD\n\n");
+    printf("1. Rotation Cipher Encryption\n");
+    printf("2. Rotation Cipher Decryption\n");
+    printf("3. Substitution Cipher Encryption\n");
+    printf("4. Substitution Cipher Decryption\n\n");
     printf("Selection: \n");
     scanf("%d", &option); // the option chosen which will then go into the switch statement
 
@@ -61,12 +61,12 @@ int main() {
             printf("Decrypted message: %s\n", str);
             break;
         case 3: 
-            for(c = 0;(c < 100 && str[c] != '\0'); c++) {
-                if(str[c] >= 97 && str[c] <= 122) {
+            for(c = 0;(c < 100 && str[c] != '\0'); c++) { // substitution cipher works similairly to rotation
+                if(str[c] >= 97 && str[c] <= 122) { // takes lower case and makes them upper case
                     str[c] = str[c] - 32;
                 }
                 switch(str[c])  {
-                    case 'A': str[c] = 'Q';
+                    case 'A': str[c] = 'Q'; // the switch case converts a letter to a specific substitution using ASCII characters
                     break;
                     case 'B': str[c] = 'W';
                     break;
@@ -128,9 +128,9 @@ int main() {
                     str[c] = str[c] - 32;
                 }
                 switch(str[c])  {
-                    case 'Q': str[c] = 'A';
+                    case 'Q': str[c] = 'A'; // similairly done for decryption but reversal way
                     break;
-                    case 'W': str[c] = 'B';
+                    case 'W': str[c] = 'B'; // need to know how to do this none hard coded
                     break;
                     case 'E': str[c] = 'C';
                     break;
@@ -187,24 +187,7 @@ int main() {
         default: printf("Option does not exist");
     }
 }
-
-
-
-/*      for each scanf in order to make the user decide whether they want to encryot or decrypt. Then they in put the key required(between 0 and 26) 
-        for the shift in cipher. Than use if/ for , while?? with conditions to find the encrypted/ decrypt code. Use equation to make it shift using 
-        user input and print to screen the encrypted of decrypted code. If this isnt what the user put in break sequence and go to the new function and
-        continue in this order Note use switch case statemt? to decide what task to perform
- */
-/*      Encryption performed on a message letter, m, by defining the encryption function, e(m), as: e(x) = (m + k)(%26)
-        where % is the remainder
-        The decryption of a cipher text letter, c, can be defined by a decryption function, d(c), as follows: d(c) = (c − k)(% 26)
-        
-        There can be 25 different substitutions to choose from
-*/
-
- 
-
-    /*  Your task is to write a C program which performs the following broad tasks:
+  /*  Your task is to write a C program which performs the following broad tasks:
         1. Encryption of a message with a rotation cipher given the message text and rotation amount
         2. Decryption of a message encrypted with a rotation cipher given cipher text and rotation amount
         3. Encryption of a message with a substitution cipher given message text and alphabet substitution
