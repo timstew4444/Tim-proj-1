@@ -1,6 +1,6 @@
-#include <stdio.h>
+ #include <stdio.h>
 
-    void rotationencryption(char str[]); //function definition
+    void rotationencryption(char str[]); //function prototype for each of the tasks
     void rotationdecryption(char str[]);
     void substitutionencryption(char str[]);
     void substitutiondecryption(char str[]);
@@ -12,8 +12,8 @@
 
 int main() {
     printf("Enter a message: \n"); //user adds message that will be either encrypted or decrypted
-    scanf("%[^\n]s", str); // it is than read for str and this will allow for whitespace
-    printf("Please select an option: \n"); //menu type bar for user to select specific task
+    scanf("%[^\n]s", str); // it is than read for str and [^\n] will allow for whitespace to be read
+    printf("Please select an option: \n"); //menu bar for user to select specific task
     printf("1. Rotation Cipher Encryption\n");
     printf("2. Rotation Cipher Decryption\n");
     printf("3. Substitution Cipher Encryption\n");
@@ -34,25 +34,25 @@ int main() {
         case 4: 
             substitutiondecryption(str);
             break;
-        default: printf("Option does not exist");
+        default: printf("Option does not exist"); // default setting which is displayed if no other options are chosen
     }
 }
 
 void rotationencryption(char str[]) { //function definition
             printf("Choose key (0-26): \n"); // the key that the letters are rotated by
             scanf("%d", &key);
-            for(c = 0;(c < 100 && str[c] != '\0'); c++) { 
-                if(str[c] >= 97 && str[c] <= 122) { // the numbers represent the equivalent letter in ASCII table ie a = 97 ... z = 122
-			        str[c] = (str[c] - 32 + key); // this line assigns the lower case to its equivalent upper case letter
+            for(c = 0;(c < 100 && str[c] != '\0'); c++) { // the for loop allows each character of the string to be read and incremented until the end
+                if(str[c] >= 'a' && str[c] <= 'z') { // the letters are represented by numbers in the ASCII table ie a = 97 ... z = 122. This line is implemented so lower case can be converted to upper case
+			        str[c] = (str[c] - 32 + key); // this line assigns the lower case to its equivalent upper case letter and adds the key for rotation
 			
-			        if(str[c] > 90) {               // if above is higher than Z(90) then it will need to shift back to the beggining ie get to A(65)
-				        str[c] = str[c] - 91 + 65; // ie if key is 1 than Z becomes 91 so make it 0 than add 65 to become A
+			        if(str[c] > 'Z') {               // this if statement runs if after the key rotation, the letter is higher than Z(90) as it needs to be shifted back to to the start ie A(65)
+				        str[c] = str[c] - 91 + 65; // ie if key is 1 than Z(90) becomes 91 so make it 0 than add 65 to become A
 			        }
 		        }
-		        else if(str[c] >= 65 && str[c] <= 90) { // same as above by does it for capital letters
+		        else if(str[c] >= 'A' && str[c] <= 'Z') { // same as above by does it for capital letters
 			        str[c] = str[c] + key; //the string than uses letter and adds key to encrypt certain amount
 			
-			        if(str[c] > 90) {
+			        if(str[c] > 'Z') {
 				        str[c] = str[c] - 91 + 65;
 			        }       
 		        }
@@ -65,33 +65,33 @@ void rotationdecryption(char str[]) {
         printf("Choose key (0-26): \n"); // decryption has same layout but minuses key rather than adds it
             scanf("%d", &key);
             for(c = 0;(c < 100 && str[c] != '\0'); c++) { 
-                if(str[c] >= 97 && str[c] <= 122) { 
+                if(str[c] >= 'a' && str[c] <= 'z') { 
 			        str[c] = (str[c] - 32 - key);
 			
-			        if(str[c] < 65){  //as it goes opposite way than if its A needs to be shifted back to Z              
+			        if(str[c] < 'A'){  //as it goes opposite way than if its A needs to be shifted back to Z              
 				        str[c] = str[c] + 91 - 65 ; // gets the string and if < 65 takes it to Z
 			        }
 		        }
-		        else if(str[c] >= 65 && str[c] <= 90) {
+		        else if(str[c] >= 'A' && str[c] <= 'Z') {
 			        str[c] = str[c] - key;
 			
-			        if(str[c] < 65){
+			        if(str[c] < 'A'){
 				        str[c] = str[c] + 91 - 65;
 			        }       
 		        }
             }
-            printf("Decrypted message: %s\n", str);
+            printf("Decrypted message: %s\n", str); // prints message to user
 }
 
 void substitutionencryption(char str[]) {
-            for(c = 0;(c < 100 && str[c] != '\0'); c++) { // substitution cipher works similairly to rotation
-                if(str[c] >= 97 && str[c] <= 122) { // takes lower case and makes them upper case
+            for(c = 0;(c < 100 && str[c] != '\0'); c++) { // substitution cipher works similairly to rotation as each character of string is read
+                if(str[c] >= 97 && str[c] <= 122) { // takes lower case letters from the ASCII table and makes them upper case
                     str[c] = str[c] - 32;
                 }
                 switch(str[c])  {
                     case 'A': str[c] = 'Q'; // the switch case converts a letter to a specific substitution using ASCII characters
                     break;
-                    case 'B': str[c] = 'W';
+                    case 'B': str[c] = 'W'; //this is hard coded so each letter is equivalent to a specific letter
                     break;
                     case 'C': str[c] = 'E';
                     break;
