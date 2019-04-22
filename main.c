@@ -39,7 +39,7 @@ int main() {
 }
 
 void rotationencryption(char str[]) { //function definition
-            printf("Choose key (0-26): \n"); // the key that the letters are rotated by
+            printf("Choose key (0-25): \n"); // the key that the letters are rotated by
             scanf("%d", &key);
             for(c = 0;(c < 100 && str[c] != '\0'); c++) { // the for loop allows each character of the string to be read and incremented until the end
                 if(str[c] >= 'a' && str[c] <= 'z') { // the letters are represented by numbers in the ASCII table ie a = 97 ... z = 122. This line is implemented so lower case can be converted to upper case
@@ -62,7 +62,7 @@ void rotationencryption(char str[]) { //function definition
 }
 
 void rotationdecryption(char str[]) {
-        printf("Choose key (0-26): \n"); // decryption has same layout but minuses key rather than adds it
+        printf("Choose key (0-25): \n"); // decryption has same layout but minuses key rather than adds it
             scanf("%d", &key);
             for(c = 0;(c < 100 && str[c] != '\0'); c++) { 
                 if(str[c] >= 'a' && str[c] <= 'z') { 
@@ -88,6 +88,8 @@ void substitutionencryption(char str[]) {
                 if(str[c] >= 97 && str[c] <= 122) { // takes lower case letters from the ASCII table and makes them upper case
                     str[c] = str[c] - 32;
                 }
+                printf("Enter alphabetic substitutuion:");
+                scanf("%s\n", a, b, c);
                 switch(str[c])  {
                     case 'A': str[c] = 'Q'; // the switch case converts a letter to a specific substitution using ASCII characters
                     break;
