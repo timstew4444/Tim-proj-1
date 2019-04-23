@@ -8,7 +8,7 @@
     int option; //option is the choice between rotation or substitution and encryption or decryption
     int c = 0; // counter used in for loop
     int key; // used for determining the value at which cipher is rotated
-    char str[1000]; //used for each encrypted/decrypted letter
+    char str[1024]; //used for each encrypted/decrypted letter
 
 int main() {
     printf("Enter a message: \n"); //user adds message that will be either encrypted or decrypted
@@ -41,7 +41,7 @@ int main() {
 void rotationencryption(char str[]) { //function definition
             printf("Choose key (0-25): \n"); // the key that the letters are rotated by
             scanf("%d", &key);
-            for(c = 0;(c < 100 && str[c] != '\0'); c++) { // the for loop allows each character of the string to be read and incremented until the end
+            for(c = 0; str[c] != '\0'; c++) { // the for loop allows each character of the string to be read and incremented until the end
                 if(str[c] >= 'a' && str[c] <= 'z') { // the letters are represented by numbers in the ASCII table ie a = 97 ... z = 122. This line is implemented so lower case can be converted to upper case
 			        str[c] = (str[c] - 32 + key); // this line assigns the lower case to its equivalent upper case letter and adds the key for rotation
 			
@@ -64,7 +64,7 @@ void rotationencryption(char str[]) { //function definition
 void rotationdecryption(char str[]) {
         printf("Choose key (0-25): \n"); // decryption has same layout but minuses key rather than adds it
             scanf("%d", &key);
-            for(c = 0;(c < 100 && str[c] != '\0'); c++) { 
+            for(c = 0; str[c] != '\0'; c++) { 
                 if(str[c] >= 'a' && str[c] <= 'z') { 
 			        str[c] = (str[c] - 32 - key);
 			
@@ -84,12 +84,11 @@ void rotationdecryption(char str[]) {
 }
 
 void substitutionencryption(char str[]) {
-            for(c = 0;(c < 100 && str[c] != '\0'); c++) { // substitution cipher works similairly to rotation as each character of string is read
+            for(c = 0; str[c] != '\0'; c++) { // substitution cipher works similairly to rotation as each character of string is read
                 if(str[c] >= 97 && str[c] <= 122) { // takes lower case letters from the ASCII table and makes them upper case
                     str[c] = str[c] - 32;
                 }
-                printf("Enter alphabetic substitutuion:");
-                scanf("%s\n", a, b, c);
+            
                 switch(str[c])  {
                     case 'A': str[c] = 'Q'; // the switch case converts a letter to a specific substitution using ASCII characters
                     break;
@@ -149,7 +148,7 @@ void substitutionencryption(char str[]) {
 }
 
 void substitutiondecryption(char str[]) {
-    for(c = 0;(c < 100 && str[c] != '\0'); c++) {
+    for(c = 0; str[c] != '\0'; c++) {
                 if(str[c] >= 97 && str[c] <= 122) {
                     str[c] = str[c] - 32;
                 }
