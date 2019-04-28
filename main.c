@@ -1,4 +1,4 @@
- #include <stdio.h>
+#include <stdio.h>
 
     void rotationencryption(char str[]); //function prototype for each of the tasks
     void rotationdecryption(char str[]);
@@ -12,7 +12,7 @@
 
 int main() {
     printf("Enter a message: \n"); //user adds message that will be either encrypted or decrypted
-    scanf("%[^\n]s", str); // it is than read for str and [^\n] will allow for whitespace to be read
+    scanf("%[^\n]s", str); // it is than read for str and [^\n] will allow for whitespace to be read and not changed
     printf("Please select an option: \n"); //menu bar for user to select specific task
     printf("1. Rotation Cipher Encryption\n");
     printf("2. Rotation Cipher Decryption\n");
@@ -155,7 +155,7 @@ void substitutiondecryption(char str[]) {
                 switch(str[c])  {
                     case 'Q': str[c] = 'A'; // similairly done for decryption but reversal way
                     break;
-                    case 'W': str[c] = 'B'; // need to know how to do this none hard coded
+                    case 'W': str[c] = 'B'; 
                     break;
                     case 'E': str[c] = 'C';
                     break;
